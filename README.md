@@ -22,4 +22,4 @@ An social media web application where users can add and remove photos.
 
 **GitHub Pages**
 
-Deployment Link:
+- [GitHub Link](https://devontesmith.github.io/se_project_spots/)
