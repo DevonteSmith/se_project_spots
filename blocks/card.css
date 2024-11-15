@@ -28,10 +28,16 @@
   white-space: nowrap;
   overflow: hidden;
   max-width: 353px;
+  margin: 12px 0 0;
 }
 
 @media screen and (max-width: 627px) {
   .card__image {
     height: 288px;
+  }
+
+  .card__title {
+    font-size: 16px;
+    line-height: 16px;
   }
 }
