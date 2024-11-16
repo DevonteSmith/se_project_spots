@@ -19,6 +19,10 @@
   opacity: 40%;
 }
 
+.card__like-button:hover {
+  cursor: pointer;
+}
+
 .card__title {
   font-size: 20px;
   font-weight: 500;
@@ -29,6 +33,7 @@
   overflow: hidden;
   max-width: 353px;
   margin: 12px 0 0;
+  color: #212121;
 }
 
 @media screen and (max-width: 627px) {

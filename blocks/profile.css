@@ -27,6 +27,7 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   max-width: 420px;
+  color: #212121;
 }
 
 .profile__description {
@@ -40,6 +41,8 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 16px;
+  color: #212121;
+  opacity: 70%;
 }
 
 .profile__edit-btn {
@@ -52,6 +55,13 @@
   font-size: 16px;
   line-height: 1;
   padding: 0;
+  color: #212121;
+  margin-top: 114px;
+}
+
+.profile__edit-btn:hover {
+  opacity: 100%;
+  cursor: pointer;
 }
 
 .profile__add-btn {
@@ -71,6 +81,11 @@
   line-height: 1;
   gap: 8px;
   padding: 0;
+}
+
+.profile__add-btn:hover {
+  opacity: 80%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 627px) {
@@ -108,6 +123,7 @@
   .profile__edit-btn {
     display: flex;
     align-items: center;
+    margin: auto;
   }
 
   .profile__add-btn {
