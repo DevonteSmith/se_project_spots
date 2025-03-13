@@ -87,6 +87,39 @@
           </form>
         </div>
       </div>
+      <div class="modal" id="add-card-modal">
+        <div class="modal__container">
+          <button type="button" class="modal__close-btn">
+            <img
+              src="./images/Close_Icon.svg"
+              alt="Close"
+              class="modal__close-icon"
+            />
+          </button>
+          <h2 class="modal__title">New post</h2>
+          <form name="Edit profile" class="modal__form" id="add-card-form ">
+            <label for="add-card-link-input" class="modal__label"
+              >Image link
+              <input
+                id="add-card-link-input"
+                type="url"
+                class="modal__input"
+                placeholder="Paste a link to the picture"
+              />
+            </label>
+            <label for="add-card-name-input" class="modal__label"
+              >Caption
+              <input
+                id="add-card-name-input"
+                type="text"
+                class="modal__input"
+                placeholder="Type your caption"
+              />
+            </label>
+            <button type="submit" class="modal__submit-btn">Save</button>
+          </form>
+        </div>
+      </div>
     </div>
     <script defer src="./scripts/index.js"></script>
   </body>
