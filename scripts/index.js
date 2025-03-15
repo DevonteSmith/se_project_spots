@@ -39,7 +39,10 @@ const editModalDescriptionInput = editModal.querySelector(
 );
 
 const cardModal = document.querySelector("#add-card-modal");
+const cardForm = cardModal.querySelector(".modal__form");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
+const cardNameInput = cardModal.querySelector("#add-card-name-input");
+const cardLinkInput = cardModal.querySelector("#add-card-link-input");
 
 const cardTemplate = document.querySelector("#card-template");
 const cardsList = document.querySelector(".cards__list");
@@ -51,11 +54,20 @@ function getCardElement(data) {
 
   const cardNameEl = cardElement.querySelector(".card__title");
   const cardImageEl = cardElement.querySelector(".card__image");
+  const cardLikeBtn = cardElement.querySelector(".card__like-button");
+  const cardDeleteBtn = cardElement.querySelector(".card__delete-btn");
 
   cardNameEl.textContent = data.name;
   cardImageEl.src = data.link;
   cardImageEl.alt = data.name;
 
+  cardLikeBtn.addEventListener("click", () => {
+    cardLikeBtn.classList.toggle("card__like-button_liked");
+  });
+
+  cardDeleteBtn.addEventListener("click", () => {
+    cardDeleteBtn.closest(".card").remove();
+  });
   return cardElement;
 }
 
@@ -74,6 +86,13 @@ function handleEditFormSubmit(evt) {
   closeModal(editModal);
 }
 
+function handleAddCardSubmit(evt) {
+  evt.preventDefault();
+  const inputValues = { name: cardNameInput.value, link: cardLinkInput.value };
+  const cardEl = getCardElement(inputValues);
+  cardsList.prepend(cardEl);
+  closeModal(cardModal);
+}
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
@@ -90,6 +109,7 @@ cardModalCloseBtn.addEventListener("click", () => {
   closeModal(cardModal);
 });
 editFormElement.addEventListener("submit", handleEditFormSubmit);
+cardForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((item) => {
   const cardElement = getCardElement(item);
