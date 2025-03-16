@@ -6,7 +6,6 @@
   right: 0;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 0 20px;
@@ -27,6 +26,20 @@
   border-radius: 8px;
 }
 
+.modal__content_type_preview {
+  padding: 0;
+}
+
+.modal__image {
+  width: 100%;
+  object-fit: contain;
+  max-width: 80vw;
+  max-height: 80vh;
+}
+
+.modal__caption {
+}
+
 .modal__close-btn {
   position: absolute;
   top: 32px;
@@ -37,6 +50,13 @@
   border: none;
   background-color: transparent;
   padding: 0;
+}
+
+.modal__close-btn_type_preview {
+  background-image: url("../images/Close_Icon_preview.svg");
+  top: 0;
+  right: -52.5px;
+  opacity: 1;
 }
 
 .modal__close-btn:hover {
