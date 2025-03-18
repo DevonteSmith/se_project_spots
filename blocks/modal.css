@@ -36,7 +36,7 @@
   transform: translateY(0);
 }
 
-.modal__content_type_preview {
+.modal__container_type_preview {
   padding: 0;
   background: transparent;
   width: unset;
@@ -115,7 +115,11 @@
   font-weight: 500;
   font-size: 20px;
   line-height: 1;
-  border-color: gray;
+  border: 1px solid #21212166;
+}
+
+.modal__input:hover {
+  border: 1px solid #212121;
 }
 
 .modal__submit-btn {
@@ -136,10 +140,6 @@
   }
 
   .modal__container {
-    padding: 12px;
-  }
-
-  .modal__content {
     padding: 12px;
   }
 
@@ -172,18 +172,15 @@
 }
 
 @media (max-width: 320px) {
-  .modal {
-    padding: 0;
-  }
-
-  .modal__container {
-    padding: 16px;
-  }
-
   .modal__image {
-    width: 100%;
+    width: 288px;
     max-width: none;
     max-height: none;
+    border-radius: 4px;
+  }
+
+  .modal__caption {
+    font-size: 16px;
   }
 
   .modal__close-btn_type_preview {
