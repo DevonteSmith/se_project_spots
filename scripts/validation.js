@@ -71,8 +71,19 @@ const setEventListeners = (formEl, config) => {
   });
 };
 
+function resetValidation(formEl, config) {
+  const inputList = Array.from(formEl.querySelectorAll(config.inputSelector));
+  const submitButton = formEl.querySelector(config.submitButtonSelector);
+
+  inputList.forEach((inputEl) => {
+    hideInputError(formEl, inputEl, config);
+  });
+
+  toggleButtonState(inputList, submitButton, config);
+}
+
 function handleOverlayClick(event, config) {
-  if (event.target.classList.contains(config.modal)) {
+  if (event.target.classList.contains("modal")) {
     closeModal(event.target);
   }
 }

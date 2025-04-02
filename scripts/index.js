@@ -123,6 +123,7 @@ setupCloseModalButton(previewModalCloseBtn, previewModal);
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
+  resetValidation(editFormElement, settings);
   openModal(editModal);
 });
 
