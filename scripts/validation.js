@@ -62,13 +62,10 @@ const setEventListeners = (formEl, config) => {
     });
   });
 
-  formEl.addEventListener("submit", (event) => {
-    if (hasInvalidInput(inputList)) {
-      event.preventDefault();
-    } else {
-      inputList.forEach((input) => hideInputError(formEl, input, config));
-    }
-  });
+  if (hasInvalidInput(inputList)) {
+  } else {
+    inputList.forEach((input) => hideInputError(formEl, input, config));
+  }
 };
 
 function resetValidation(formEl, config) {
@@ -81,31 +78,6 @@ function resetValidation(formEl, config) {
 
   toggleButtonState(inputList, submitButton, config);
 }
-
-function handleOverlayClick(event, config) {
-  if (event.target.classList.contains("modal")) {
-    closeModal(event.target);
-  }
-}
-
-function handleEscKeyPress(event, config) {
-  if (event.key === "Escape") {
-    const openedModal = document.querySelector(config.openModal);
-    if (openedModal) {
-      closeModal(openedModal);
-    }
-  }
-}
-
-document.querySelectorAll(settings.modal).forEach((modal) => {
-  modal.addEventListener("click", (event) =>
-    handleOverlayClick(event, settings)
-  );
-});
-
-document.addEventListener("keydown", (event) =>
-  handleEscKeyPress(event, settings)
-);
 
 const enableValidation = (config) => {
   const formList = document.querySelectorAll(config.formSelector);
