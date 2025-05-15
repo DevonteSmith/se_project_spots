@@ -1,3 +1,27 @@
+import "./index.css";
+import {
+  enableValidation,
+  settings,
+  resetValidation,
+  disableButton,
+} from "../scripts/validation.js";
+import logoSrc from "../images/Logo.svg";
+import avatarSrc from "../images/avatar.jpg";
+import editIconSrc from "../images/edit_pencil.svg";
+import plusIconSrc from "../images/plus.svg";
+import closeIconSrc from "../images/Close_Icon.svg";
+
+document.getElementById("logo").src = logoSrc;
+
+document.getElementById("profile-avatar").src = avatarSrc;
+
+document.getElementById("edit-icon").src = editIconSrc;
+
+document.getElementById("plus-icon").src = plusIconSrc;
+
+document.getElementById("close-icon-1").src = closeIconSrc;
+document.getElementById("close-icon-2").src = closeIconSrc;
+
 const initialCards = [
   {
     name: "Val Thorens",
@@ -151,3 +175,5 @@ editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
 initialCards.forEach((item) => cardsList.append(getCardElement(item)));
+
+enableValidation(settings);
