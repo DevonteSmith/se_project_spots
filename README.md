@@ -15,6 +15,7 @@ An social media web application where users can add and remove photos.
 
 - HTML
 - CSS
+- JavaScript
 
 **Images**
 
