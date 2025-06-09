@@ -299,5 +299,4 @@ editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 deleteForm.addEventListener("submit", handleDeleteSubmit);
 
-// Enable validation
 enableValidation(settings);
