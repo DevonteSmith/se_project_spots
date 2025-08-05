@@ -10,10 +10,10 @@ import avatarSrc from "../images/avatar.jpg";
 import editIconSrc from "../images/edit_pencil.svg";
 import plusIconSrc from "../images/plus.svg";
 import closeIconSrc from "../images/Close_Icon.svg";
+import Api from "../utils/Api.js";
+import { data } from "autoprefixer";
 
 document.getElementById("logo").src = logoSrc;
-
-document.getElementById("profile-avatar").src = avatarSrc;
 
 document.getElementById("edit-icon").src = editIconSrc;
 
@@ -21,33 +21,29 @@ document.getElementById("plus-icon").src = plusIconSrc;
 
 document.getElementById("close-icon-1").src = closeIconSrc;
 document.getElementById("close-icon-2").src = closeIconSrc;
+document.getElementById("close-icon-3").src = closeIconSrc;
+document.getElementById("close-icon-4").src = closeIconSrc;
 
-const initialCards = [
-  {
-    name: "Val Thorens",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/1-photo-by-moritz-feldmann-from-pexels.jpg",
+const api = new Api({
+  baseUrl: "https://around-api.en.tripleten-services.com/v1",
+  headers: {
+    authorization: "ab8dc431-ba9b-41ea-813d-3d243375af30",
+    "Content-Type": "application/json",
   },
-  {
-    name: "Restaurant terrace",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/2-photo-by-ceiline-from-pexels.jpg",
-  },
-  {
-    name: "An outdoor cafe",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/3-photo-by-tubanur-dogan-from-pexels.jpg",
-  },
-  {
-    name: "A very long bridge, over the forest and through the trees",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/4-photo-by-maurice-laschet-from-pexels.jpg",
-  },
-  {
-    name: "Tunnel with morning light",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/5-photo-by-van-anh-nguyen-from-pexels.jpg",
-  },
-  {
-    name: "Mountain house",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/spots/6-photo-by-moritz-feldmann-from-pexels.jpg",
-  },
-];
+});
+
+api
+  .getAppInfo()
+  .then(([user, cards]) => {
+    profileName.textContent = user.name;
+    profileDescription.textContent = user.about;
+    document.getElementById("profile-avatar").src = user.avatar;
+
+    cards.forEach((cardData) => {
+      cardsList.append(getCardElement(cardData));
+    });
+  })
+  .catch(console.error);
 
 const profileEditButton = document.querySelector(".profile__edit-btn");
 const cardModalButton = document.querySelector(".profile__add-btn");
@@ -68,6 +64,15 @@ const cardSubmitBtn = cardModal.querySelector(".modal__submit-btn");
 const cardModalCloseBtn = cardModal.querySelector(".modal__close-btn");
 const cardNameInput = cardModal.querySelector("#add-card-name-input");
 const cardLinkInput = cardModal.querySelector("#add-card-link-input");
+
+const avatarModalButton = document.querySelector(".profile__avatar-btn");
+const avatarModal = document.querySelector("#avatar-modal");
+const avatarForm = document.querySelector("#edit-avatar-form");
+const avatarInput = avatarForm.querySelector("#profile-avatar-input");
+const avatarModalCloseBtn = avatarModal.querySelector(".modal__close-btn");
+const avatarSubmitBtn = avatarForm.querySelector(".modal__submit-btn");
+
+const deleteModal = document.querySelector("#delete-modal");
 
 const previewModal = document.querySelector("#preview-modal");
 const previewModalImageEl = previewModal.querySelector(".modal__image");
@@ -96,7 +101,13 @@ function getCardElement(data) {
   });
 
   cardDeleteBtn.addEventListener("click", () => {
-    cardElement.remove();
+    openModal(deleteModal);
+
+    const confirmDeleteBtn = deleteModal.querySelector(".modal__confirm-btn");
+    confirmDeleteBtn.onclick = () => {
+      cardElement.remove();
+      closeModal(deleteModal);
+    };
   });
 
   cardImageEl.addEventListener("click", () => {
@@ -143,9 +154,17 @@ function setupCloseModalButton(closeButton, modal) {
 
 function handleEditFormSubmit(evt) {
   evt.preventDefault();
-  profileName.textContent = editModalNameInput.value;
-  profileDescription.textContent = editModalDescriptionInput.value;
-  closeModal(editModal);
+  api
+    .editUserInfo({
+      name: editModalNameInput.value,
+      about: editModalDescriptionInput.value,
+    })
+    .then((data) => {
+      profileName.textContent = data.name;
+      profileDescription.textContent = data.about;
+      closeModal(editModal);
+    })
+    .catch(console.error);
 }
 
 function handleAddCardSubmit(evt) {
@@ -161,6 +180,7 @@ function handleAddCardSubmit(evt) {
 setupCloseModalButton(editModalCloseBtn, editModal);
 setupCloseModalButton(cardModalCloseBtn, cardModal);
 setupCloseModalButton(previewModalCloseBtn, previewModal);
+setupCloseModalButton(avatarModalCloseBtn, avatarModal);
 
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileName.textContent;
@@ -174,6 +194,17 @@ cardModalButton.addEventListener("click", () => openModal(cardModal));
 editFormElement.addEventListener("submit", handleEditFormSubmit);
 cardForm.addEventListener("submit", handleAddCardSubmit);
 
-initialCards.forEach((item) => cardsList.append(getCardElement(item)));
+avatarModalButton.addEventListener("click", () => openModal(avatarModal));
+avatarForm.addEventListener("submit", (evt) => {
+  evt.preventDefault();
+  api
+    .editUserAvatar({ avatar: avatarInput.value })
+    .then((user) => {
+      document.getElementById("profile-avatar").src = user.avatar;
+      avatarForm.reset();
+      closeModal(avatarModal);
+    })
+    .catch(console.error);
+});
 
 enableValidation(settings);
