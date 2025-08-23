@@ -18,7 +18,7 @@
       <main class="content">
         <section class="profile page__section">
           <div class="profile__avatar-container">
-            <button class="profile__avatar-btn">
+            <button type="button" class="profile__avatar-btn">
               <img
                 src="<%=require('./images/pencil-light.svg')%>"
                 alt="Pencil icon"
@@ -201,17 +201,27 @@
         <button type="button" class="modal__close-btn">
           <img id="close-icon-4" alt="Close" class="modal__close-icon" />
         </button>
-        <h2 class="modal__title">
+        <h2 class="modal__title modal__title-delete-btn">
           Are you sure you want to delete this image?
         </h2>
         <form
           name="Edit profile"
-          class="modal__form"
+          class="modal__form modal__form-delete-btn"
           id="delete-form"
           novalidate
         >
-          <button type="submit" class="modal__submit-btn">Delete</button>
-          <button type="button" class="modal__submit-btn">Cancel</button>
+          <button
+            type="submit"
+            class="modal__submit-btn modal__submit-btn-color"
+          >
+            Delete
+          </button>
+          <button
+            type="button"
+            class="modal__submit-btn modal__cancel-btn-color"
+          >
+            Cancel
+          </button>
         </form>
       </div>
     </div>

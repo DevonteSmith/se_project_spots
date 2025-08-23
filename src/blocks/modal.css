@@ -101,6 +101,11 @@
   line-height: 1;
 }
 
+.modal__title-delete-btn {
+  font-size: 24px;
+  text-align: center;
+}
+
 .modal__label {
   display: flex;
   flex-direction: column;
@@ -148,6 +153,25 @@
 
 .modal__submit-btn_disabled {
   background-color: grey;
+}
+
+.modal__submit-btn-color {
+  color: #212121;
+  background-color: #ff6565;
+}
+
+.modal__cancel-btn-color {
+  color: #212121;
+  background-color: #fff;
+}
+
+.modal__form-delete-btn {
+  gap: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.modal__close-icon {
 }
 
 @media screen and (max-width: 627px) {

@@ -23,6 +23,11 @@
   padding-bottom: 12px;
 }
 
+.profile__avatar-btn:hover {
+  opacity: 50%;
+  cursor: pointer;
+  background: #00000080;
+}
 .profile__avatar-container:hover .profile__avatar-btn {
   visibility: visible;
 }
