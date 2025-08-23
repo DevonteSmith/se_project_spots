@@ -15,10 +15,11 @@ An social media web application where users can add and remove photos.
 
 - HTML
 - CSS
+- JavaScript
 
 **Images**
 
-![Getting Started](./images/Spots.png)
+![Getting Started](./src/images/Spots.png)
 
 **GitHub Pages**
 
